@@ -56,7 +56,7 @@ int main(int argc, char** argv)
 
   const size_t len = strlen(argv[1]);
   if (strlen(argv[2]) != len) {
-    fputs("error: lengths of arguments are different.\n", stderr);
+    fputs("error: lengths of the arguments are different.\n", stderr);
     exit(EXIT_FAILURE);
   }
 
