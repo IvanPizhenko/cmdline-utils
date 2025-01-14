@@ -3,4 +3,4 @@
 # See file LICENSE for more information.
 
 NAME:=args
-CFLAGS+=-std=c99
+CFLAGS+=-std=c99 -Wall -Wextra -Werror
