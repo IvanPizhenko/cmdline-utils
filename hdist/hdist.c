@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
-// See file LICENSE.txt for more information. 
+// Copyright (c) Ivan Pizhenko, 2025. All rights reserved.
+// See file LICENSE for more information.
 
 #include <stdio.h>
 #include <stdlib.h>
