@@ -6,7 +6,7 @@
 
 int main(int argc, char **argv)
 {
-  if (argc > 1) { 
+  if (argc > 1) {
     char buffer[32];
     const int n = snprintf(buffer, sizeof(buffer), "%d", argc);
     snprintf(buffer, sizeof(buffer), "[%%.0%dd] %%s\n", n);
