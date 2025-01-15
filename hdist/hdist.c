@@ -204,18 +204,18 @@ int main(int argc, char **argv)
     return EXIT_SUCCESS;
   }
 
-  int arg_index = 1;
+  int first_arg_index = 1;
   if (strcmp(argv[1], "-f") == 0 || strcmp(argv[1], "--file") == 0) {
       is_file_mode = true;
-      ++arg_index;
+      ++first_arg_index;
   }
 
-  const int nargs = argc - arg_index;
+  const int nargs = argc - first_arg_index;
   if (nargs != 2) incorrect_args(argv[0], nargs);
 
   const unsigned long long d = is_file_mode
-    ? hdist_files(argv[arg_index], argv[arg_index + 1])
-    : hdist_hex_strs(argv[arg_index], argv[arg_index + 1]);
+    ? hdist_files(argv[first_arg_index], argv[first_arg_index + 1])
+    : hdist_hex_strs(argv[first_arg_index], argv[first_arg_index + 1]);
   printf("%llu\n", d);
 
   return EXIT_SUCCESS;
