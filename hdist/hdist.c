@@ -209,9 +209,7 @@ int main(int argc, char **argv)
   if (strcmp(argv[1], "-f") == 0 || strcmp(argv[1], "--file") == 0) {
       is_file_mode = true;
       ++first_arg_index;
-  }
-
-  if (strcmp(argv[1], "-n") == 0 || strcmp(argv[1], "--number") == 0) {
+  } else if (strcmp(argv[1], "-n") == 0 || strcmp(argv[1], "--number") == 0) {
       is_file_mode = false;
       ++first_arg_index;
   }
