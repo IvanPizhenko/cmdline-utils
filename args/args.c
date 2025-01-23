@@ -16,8 +16,9 @@ int main(int argc, char **argv)
   if (argc == 2) {
     if (strcmp(argv[1], "-v") == 0 || strcmp(argv[1], "--version") == 0) {
       printf("%s %s\n", ARGS_PROGRAM_NAME, ARGS_VERSION_STR);
-      exit(EXIT_SUCCESS);
+      return EXIT_SUCCESS;
     }
+
     if (strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0) {
       printf("Usage: %s [OPTION] [ARGS]...\n", ARGS_PROGRAM_NAME);
       puts(
@@ -26,7 +27,7 @@ int main(int argc, char **argv)
         "  -h, --help       display this help and exit\n"
         "  -v, --version    output version information and exit\n"
       );
-      exit(EXIT_SUCCESS);
+      return EXIT_SUCCESS;
     }
   }
 
