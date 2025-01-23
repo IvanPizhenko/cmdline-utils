@@ -33,7 +33,8 @@ typedef ssize_t read_result_type;
 #define NORETURN __attribute__((noreturn)) void
 #endif
 
-#define VERSION_STR "0.1.0"
+#define HDIST_PROGRAM_NAME "hdist"
+#define HDIST_VERSION_STR "0.1.0"
 
 static ALWAYS_INLINE int hex_to_bin(char c)
 {
@@ -43,7 +44,7 @@ static ALWAYS_INLINE int hex_to_bin(char c)
   return -1;
 }
 
-static unsigned long long hdist_hex_strs(const char *hex1, const char *hex2)
+static unsigned long long hdist_hex_numbers(const char *hex1, const char *hex2)
 {
   const size_t len = strlen(hex1);
   if (strlen(hex2) != len) {
@@ -176,46 +177,51 @@ static NORETURN incorrect_args(const char* argv0, int n)
   exit(EXIT_FAILURE);
 }
 
-static bool is_file_mode = false;
+static bool is_file_mode = true;
 
 int main(int argc, char **argv)
 {
   if (argc < 2) incorrect_args(argv[0], 0);
 
   if (strcmp(argv[1], "-v") == 0 || strcmp(argv[1], "--version") == 0) {
-    printf("%s\n", VERSION_STR);
+    printf("%s %s\n", HDIST_PROGRAM_NAME, HDIST_VERSION_STR);
     return EXIT_SUCCESS;
   }
 
   if (strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0) {
-    printf("usage: %s [OPTIONS] [HEX1 HEX2 | FILE1 FILE2]\n", argv[0]);
+    printf("Usage: %s [OPTIONS] [FILE1 FILE2 | HEX1 HEX2]\n", HDIST_PROGRAM_NAME);
     puts(
-        "\n"
-        "Compute Hamming distance between two hexadecimal numbers\n"
-        "of the arbitrary precision or two files.\n"
+        "Compute Hamming distance between contents of two files\n"
+        "or two hexadecimal numbers of the arbitrary length.\n"
         "\n"
         "HEX1 and HEX2 must be of the same length.\n"
         "\n"
-        "Options:\n"
-        "  -f, --file       Compare files\n"
+        "  -f, --file       Compare files (default mode)\n"
+        "  -n, --number     Compare hexadecimal numbers\n"
         "  -h, --help       Print this help message and exit\n"
         "  -v, --version    Print version and exit\n"
     );
     return EXIT_SUCCESS;
   }
 
-  int arg_index = 1;
+  int first_arg_index = 1;
+
   if (strcmp(argv[1], "-f") == 0 || strcmp(argv[1], "--file") == 0) {
       is_file_mode = true;
-      ++arg_index;
+      ++first_arg_index;
   }
 
-  const int nargs = argc - arg_index;
+  if (strcmp(argv[1], "-n") == 0 || strcmp(argv[1], "--number") == 0) {
+      is_file_mode = false;
+      ++first_arg_index;
+  }
+
+  const int nargs = argc - first_arg_index;
   if (nargs != 2) incorrect_args(argv[0], nargs);
 
   const unsigned long long d = is_file_mode
-    ? hdist_files(argv[arg_index], argv[arg_index + 1])
-    : hdist_hex_strs(argv[arg_index], argv[arg_index + 1]);
+    ? hdist_files(argv[first_arg_index], argv[first_arg_index + 1])
+    : hdist_hex_numbers(argv[first_arg_index], argv[first_arg_index + 1]);
   printf("%llu\n", d);
 
   return EXIT_SUCCESS;

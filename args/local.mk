@@ -4,3 +4,4 @@
 
 NAME:=args
 CFLAGS+=-std=c99 -Wall -Wextra -Werror
+MAN_SHORT_DESC:=print arguments
