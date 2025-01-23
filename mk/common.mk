@@ -39,7 +39,7 @@ $(MAN_PAGE): $(EXE)
 	help2man -N -n "$(MAN_SHORT_DESC)" -o$(MAN_SRC) ./$(EXE)
 	gzip -f9 $(MAN_SRC)
 
-install: $(EXE) $(MAN)
+install: $(EXE) $(MAN_PAGE)
 	install -d "$(INSTALL_PREFIX)/bin" "$(INSTALL_PREFIX)/share/man/man$(MAN_SECTION)"
 	install $(EXE) "$(INSTALL_PREFIX)/bin"
 	install $(MAN_PAGE) "$(INSTALL_PREFIX)/share/man/man$(MAN_SECTION)"
