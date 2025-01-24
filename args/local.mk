@@ -3,5 +3,4 @@
 # See file LICENSE for more information.
 
 NAME:=args
-CFLAGS+=-std=c99 -Wall -Wextra -Werror
 MAN_SHORT_DESC:=print arguments

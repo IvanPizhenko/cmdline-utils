@@ -120,7 +120,7 @@ static unsigned long long hdist_files(const char *f1, const char *f2)
   while (r > 0) {
     unsigned char buffer1[INPUT_BUFFER_SIZE];
     unsigned char buffer2[INPUT_BUFFER_SIZE];
-    _Static_assert(sizeof(buffer1) == sizeof(buffer2));
+    _Static_assert(sizeof(buffer1) == sizeof(buffer2), "Buffers are not of the same size");
 
     const size_t m = r < sizeof(buffer1) ? r : sizeof(buffer1);
     //printf("about to read %d bytes\n", (int)m);
