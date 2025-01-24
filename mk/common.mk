@@ -5,7 +5,7 @@
 .PHONY: all clean install
 .SUFFIXES:
 
-CFLAGS+=-std=c11 -Wall -Wextra -Werror -Wpedantic -ftrivial-auto-var-init=pattern
+CFLAGS+=-std=c11 -Wall -Wextra -Werror -Wpedantic -ftrivial-auto-var-init=pattern -DNDEBUG
 
 ifeq ($(OS),Windows_NT)
 EXE_EXT:=.exe

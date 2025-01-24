@@ -33,6 +33,10 @@ typedef ssize_t read_result_type;
 #define NORETURN __attribute__((noreturn)) void
 #endif
 
+#ifndef static_assert
+#define static_assert _Static_assert
+#endif
+
 #define HDIST_PROGRAM_NAME "hdist"
 #define HDIST_VERSION_STR "0.1.0"
 
@@ -120,7 +124,7 @@ static unsigned long long hdist_files(const char *f1, const char *f2)
   while (r > 0) {
     unsigned char buffer1[INPUT_BUFFER_SIZE];
     unsigned char buffer2[INPUT_BUFFER_SIZE];
-    _Static_assert(sizeof(buffer1) == sizeof(buffer2), "Buffers are not of the same size");
+    static_assert(sizeof(buffer1) == sizeof(buffer2), "Buffers are not of the same size");
 
     const size_t m = r < sizeof(buffer1) ? r : sizeof(buffer1);
     //printf("about to read %d bytes\n", (int)m);
