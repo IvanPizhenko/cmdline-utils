@@ -198,6 +198,7 @@ int main(int argc, char **argv)
         "Compute Hamming distance between contents of two files\n"
         "or two hexadecimal numbers of the arbitrary length.\n"
         "\n"
+        "FILE1 and FILE2 must be of the same size.\n"
         "HEX1 and HEX2 must be of the same length.\n"
         "\n"
         "  -f, --file       Compare files (default mode)\n"
