@@ -14,7 +14,7 @@ endif
 ifeq ("x$(MSYSTEM_PREFIX)","x")
 INSTALL_PREFIX:=/usr/local
 else
-INSTALL_PREFIX:=$(MYSTEM_PREFIX)
+INSTALL_PREFIX:=$(MSYSTEM_PREFIX)
 endif
 
 SRC:=$(NAME).c $(EXTRA_SRC)
