@@ -5,6 +5,14 @@
 .PHONY: all clean install
 .SUFFIXES:
 
+ifeq ("x$(CC)","x")
+CC:=gcc
+endif
+
+ifeq ("c$(CXX)","x")
+CXX:=g++
+endif
+
 CFLAGS+=-std=c11 -Wall -Wextra -Werror -Wpedantic -ftrivial-auto-var-init=pattern -DNDEBUG
 
 ifeq ($(OS),Windows_NT)
@@ -34,7 +42,7 @@ clean:
 	-rm -f $(EXE)
 
 $(EXE): $(SRC) ../mk/common.mk local.mk
-	cc $(CFLAGS) -O2 $(SRC) -o $(NAME)
+	$(CC) $(CFLAGS) -O2 $(SRC) -o $(NAME)
 	strip $(EXE)
 
 $(MAN_PAGE): $(EXE)
