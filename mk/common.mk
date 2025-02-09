@@ -41,7 +41,7 @@ clean:
 	-rm -f $(MAN_PAGE)
 	-rm -f $(EXE)
 
-$(EXE): $(SRC) ../mk/common.mk local.mk
+$(EXE): $(SRC) ../mk/common.mk
 	$(CC) $(CFLAGS) -O2 $(SRC) -o $(NAME)
 	strip $(EXE)
 

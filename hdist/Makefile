@@ -2,5 +2,7 @@
 # Copyright (c) Ivan Pizhenko, 2025. All rights reserved.
 # See file LICENSE for more information.
 
-include local.mk
+NAME:=hdist
+MAN_SHORT_DESC:=compute Hamming distance
+
 include ../mk/common.mk
