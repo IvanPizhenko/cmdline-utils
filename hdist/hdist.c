@@ -181,6 +181,23 @@ static NORETURN incorrect_args(const char* argv0, int n)
   exit(EXIT_FAILURE);
 }
 
+static void usage(void)
+{
+  puts(
+    "Usage: " HDIST_PROGRAM_NAME " [OPTIONS] [FILE1 FILE2 | HEX1 HEX2]\n"
+    "Compute Hamming distance between contents of two files\n"
+    "or two hexadecimal numbers of the arbitrary length.\n"
+    "\n"
+    "FILE1 and FILE2 must be of the same size.\n"
+    "HEX1 and HEX2 must be of the same length.\n"
+    "\n"
+    "  -f, --file       Compare files (default mode)\n"
+    "  -n, --number     Compare hexadecimal numbers\n"
+    "  -h, --help       Print this help message and exit\n"
+    "  -v, --version    Print version and exit\n"
+  );
+}
+
 static bool is_file_mode = true;
 
 int main(int argc, char **argv)
@@ -193,19 +210,7 @@ int main(int argc, char **argv)
   }
 
   if (strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0) {
-    printf("Usage: %s [OPTIONS] [FILE1 FILE2 | HEX1 HEX2]\n", HDIST_PROGRAM_NAME);
-    puts(
-        "Compute Hamming distance between contents of two files\n"
-        "or two hexadecimal numbers of the arbitrary length.\n"
-        "\n"
-        "FILE1 and FILE2 must be of the same size.\n"
-        "HEX1 and HEX2 must be of the same length.\n"
-        "\n"
-        "  -f, --file       Compare files (default mode)\n"
-        "  -n, --number     Compare hexadecimal numbers\n"
-        "  -h, --help       Print this help message and exit\n"
-        "  -v, --version    Print version and exit\n"
-    );
+    usage();
     return EXIT_SUCCESS;
   }
 
